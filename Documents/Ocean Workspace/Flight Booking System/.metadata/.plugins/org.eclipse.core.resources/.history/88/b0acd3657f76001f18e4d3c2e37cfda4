@@ -1,0 +1,33 @@
+package com.booking.service;
+
+import java.util.List;
+
+import com.booking.entity.Booking;
+import com.booking.entity.Flight;
+import com.booking.entity.Passenger;
+
+
+
+public interface BookingService {
+
+	public Flight findFlightById(long id);
+
+	public String deleteBooking(String bookingId);
+
+	public Booking bookingInfo(String bookingId);
+
+	public List<Booking> getAllBookingsByUsername(String username);
+
+	public List<Booking> getAllBookingsByFlightNo(long flightNo);
+
+	double getFare(long flightNo, List<Passenger> passenger);
+
+	int alotSeat(long flightNo, List<Integer> list);
+
+	String addBooking(Booking booking, String username) throws SeatsNotAvailableException;
+
+	//public Boolean checkExists(String bookingId);
+
+	public String count(long flightNo);
+
+}

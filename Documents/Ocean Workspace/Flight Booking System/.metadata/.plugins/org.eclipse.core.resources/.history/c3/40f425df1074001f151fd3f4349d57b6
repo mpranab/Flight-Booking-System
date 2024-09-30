@@ -1,0 +1,11 @@
+package com.booking.service;
+
+public interface BookingService {
+	
+	find
+	Add
+	edit
+	delete
+	
+
+}

@@ -1,0 +1,37 @@
+
+   <div class="container">
+    <h2>All Flights</h2>
+    <div *ngIf="loading" class="loading">Loading...</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <div *ngIf="flights && flights.length > 0">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Flight Number</th>
+            <th>Departure City</th>
+            <th>Arrival City</th>
+            <th>Departure Date</th>
+            <th>Price</th>
+            <th>Seat Capacity</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flight of flights">
+            <td>{{ flight.flightNo }}</td>
+            <td>{{ flight.departureCity }}</td>
+            <td>{{ flight.arrivalCity }}</td>
+            <td>{{ flight.departureDate }}</td>
+            <td>{{ flight.fare }}</td>
+            <td>{{ flight.seatCapacity }}</td>
+            <td><button class="btn btn-primary" (click)="navigateToUpdate(flight.flightNo)">Update</button></td>
+            <td> <button class="btn btn-primary" (click)="deleteFlight(flight.flightNo)">Delete</button></td>
+           
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="flights && flights.length === 0">No flights available.</div>
+  </div>
+  

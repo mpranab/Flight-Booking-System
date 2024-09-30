@@ -1,0 +1,348 @@
+<div id="bg">
+
+    <nav class="navbar">
+        <div class="containerr">
+          <div class="navbar-brand">
+            <span>Flight Management System</span>
+          </div>
+          <div class="nav-actions">
+            <span>Hi {{username}} </span>
+            
+          </div>
+        </div>
+      </nav>
+    
+    </div>
+
+
+       <div class="container">
+        <h2>Add Booking</h2>
+        <form #bookingForm="ngForm" (ngSubmit)="onSubmit(bookingForm)">
+          <div class="form-group">
+            <label for="flightNo">Flight Number:</label>
+            <input
+              type="number"
+              id="flightNo"
+              name="flightNo"
+              class="form-control"
+              [(ngModel)]="booking.flightNo"
+              required
+              readonly
+            />
+          </div>
+      
+          <div class="form-group">
+            <label for="fare">Fare:</label>
+            <input
+              type="number"
+              id="fare"
+              name="fare"
+              class="form-control"
+              [(ngModel)]="booking.fare"
+              required
+              readonly
+            />
+          </div>
+      
+          <div class="form-group">
+            <label for="seats">Number of Seats:</label>
+            <input
+              type="number"
+              id="seats"
+              name="seats"
+              class="form-control"
+              [(ngModel)]="booking.seats"
+              required
+            />
+          </div>
+      
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              [(ngModel)]="booking.username"
+              required
+            />
+          </div>
+      
+          <div class="form-group">
+            <label for="date">Date:</label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              class="form-control"
+              [(ngModel)]="booking.date"
+              required
+              readonly
+            />
+          </div>
+      
+          <div class="form-group">
+            <label for="passengers">Passengers:</label>
+            <div *ngFor="let passenger of booking.passengers; let i = index">
+              <div class="form-row">
+                <div class="col">
+                  <input
+                    type="text"
+                    name="firstname{{i}}"
+                    class="form-control"
+                    placeholder="First Name"
+                    [(ngModel)]="passenger.firstname"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    name="lastname{{i}}"
+                    class="form-control"
+                    placeholder="Last Name"
+                    [(ngModel)]="passenger.lastname"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <select
+                    name="gender{{i}}"
+                    class="form-control"
+                    [(ngModel)]="passenger.gender"
+                    required
+                  >
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <input
+                    type="number"
+                    name="age{{i}}"
+                    class="form-control"
+                    placeholder="Age"
+                    [(ngModel)]="passenger.age"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    name="contactNumber{{i}}"
+                    class="form-control"
+                    placeholder="Contact Number"
+                    [(ngModel)]="passenger.contactNumber"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="number"
+                    name="seatNo{{i}}"
+                    class="form-control"
+                    placeholder="Seat No"
+                    [(ngModel)]="passenger.seatNo"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="removePassenger(i)"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button 
+              type="button" 
+              class="btn btn-primary" 
+              (click)="addPassenger()"
+              [disabled]="booking.passengers.length >= booking.seats"
+            >
+              Add Passenger
+            </button>
+          </div>
+      
+          <button type="submit" class="btn btn-success">Save Details</button>
+          <button type="submit" class="btn btn-primary" (click)="book()" >Submit</button>
+        </form>
+      
+        <div *ngIf="successMessage" class="alert alert-success mt-3">
+          {{ successMessage }}
+        </div>
+      </div>
+      
+
+       <!-- <div class="container">
+        <h2>Add Booking</h2>
+        <form #bookingForm="ngForm" (ngSubmit)="onSubmit(bookingForm)">
+          
+      
+          <div class="form-group">
+            <label for="flightNo">Flight Number:</label>
+            <input
+              type="number"
+              id="flightNo"
+              name="flightNo"
+              class="form-control"
+              [(ngModel)]="booking.flightNo"
+              required
+              readonly
+            />
+          </div>
+      
+          <div class="form-group">
+            <label for="fare">Fare:</label>
+            <input
+              type="number"
+              id="fare"
+              name="fare"
+              class="form-control"
+              [(ngModel)]="booking.fare"
+              required
+              readonly
+            />
+          </div>
+      
+          <div class="form-group">
+            <label for="seats">Number of Seats:</label>
+            <input
+              type="number"
+              id="seats"
+              name="seats"
+              class="form-control"
+              [(ngModel)]="booking.seats"
+              required
+            />
+          </div>
+      
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              [(ngModel)]="booking.username"
+              required
+            />
+          </div>
+      
+          <div class="form-group">
+            <label for="date">Date:</label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              class="form-control"
+              [(ngModel)]="booking.date"
+              required
+              readonly
+            />
+          </div>
+      
+          <div class="form-group">
+            <label for="passengers">Passengers:</label>
+            <div *ngFor="let passenger of booking.passengers; let i = index">
+              <div class="form-row">
+                <div class="col">
+                  <input
+                    type="text"
+                    name="firstname{{i}}"
+                    class="form-control"
+                    placeholder="First Name"
+                    [(ngModel)]="passenger.firstname"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    name="lastname{{i}}"
+                    class="form-control"
+                    placeholder="Last Name"
+                    [(ngModel)]="passenger.lastname"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <select
+                    name="gender{{i}}"
+                    class="form-control"
+                    [(ngModel)]="passenger.gender"
+                    required
+                  >
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <input
+                    type="number"
+                    name="age{{i}}"
+                    class="form-control"
+                    placeholder="Age"
+                    [(ngModel)]="passenger.age"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    name="contactNumber{{i}}"
+                    class="form-control"
+                    placeholder="Contact Number"
+                    [(ngModel)]="passenger.contactNumber"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="number"
+                    name="seatNo{{i}}"
+                    class="form-control"
+                    placeholder="Seat No"
+                    [(ngModel)]="passenger.seatNo"
+                    required
+                  />
+                </div>
+                <div class="col">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="removePassenger(i)"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button 
+              type="button" 
+              class="btn btn-primary" 
+              (click)="addPassenger()"
+              [disabled]="booking.passengers.length >= booking.seats"
+            >
+              Add Passenger
+            </button>
+          </div>
+      
+          <div class="form-submit">
+            <button type="submit" class="btn btn-success">Save Details</button>
+            <button type="submit" class="btn btn-primary" (click)="book()" >Submit</button>
+          </div>
+        </form>
+      
+        <div *ngIf="successMessage" class="alert alert-success mt-3">
+          {{ successMessage }}
+        </div>
+      </div>
+       -->

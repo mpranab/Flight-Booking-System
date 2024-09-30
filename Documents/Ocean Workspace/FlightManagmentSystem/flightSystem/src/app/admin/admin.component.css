@@ -1,0 +1,165 @@
+
+.navbar {
+    background-color: #61a3d8;
+    color: #fff;
+    padding: 20px 0;
+  }
+ 
+  .containerr {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+ 
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+ 
+  .logo {
+    color: #fff;
+    text-decoration: none;
+  }
+ 
+  .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+ 
+  .nav-links li {
+    display: inline-block;
+    margin-left: 20px;
+  }
+ 
+  .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+ 
+  .nav-links li a:hover {
+    color: #ffcc00;
+  }
+ 
+.nav-actions {
+    display: flex;
+    align-items: center;
+  }
+ 
+  .nav-item {
+    color: #fff;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+ 
+  .nav-item:hover {
+    color: #ffcc00;
+  }
+ 
+
+/* a{
+    margin-left: 46%;
+    text-decoration: none;
+}
+.background{
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN4ZYJqzjisCODzK-cpcxzvB0h4-d5s7wkHA&usqp=CAU');
+  background-size: cover;
+    background-position: center;
+}
+.btn-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .btn-container button {
+    margin: 0 30px; 
+  } */
+
+  .background {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  h3 {
+    text-align: center;
+    color: rgb(20, 92, 169);
+  }
+  
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+  
+  .card {
+    width: 18rem;
+    text-align: center;
+  }
+  
+  .card-body {
+    background-color: rgba(0, 0, 0, 0.74);
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .card-text {
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .btn-primary {
+    background-color: #007bffdf;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .btn-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .card {
+      margin-bottom: 20px;
+    }
+  }
+  
+  /* Center the paragraph horizontally and vertically */
+.center-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .center-text a {
+    color: #007bff; /* Bootstrap primary color */
+    text-decoration: none;
+  }
+  
+  .center-text a:hover {
+    text-decoration: underline;
+  }
+  

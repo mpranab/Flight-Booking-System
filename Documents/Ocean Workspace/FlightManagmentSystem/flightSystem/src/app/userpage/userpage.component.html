@@ -1,0 +1,67 @@
+<nav class="navbar">
+    <div class="containerr">
+      <div class="navbar-brand">
+
+        <span>Flight Management System</span>
+      </div>
+
+      <div class="nav-actions">
+        <span>Hi {{username}} </span>
+        <span class="nav-item" (click)="logout()">Logout</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <h2>Search Flights</h2>
+    <form (ngSubmit)="onSubmit()" #flightSearchForm="ngForm">
+      <div class="form-group">
+        <label for="departureCity">Departure City</label>
+        <input type="text" id="departureCity" name="departureCity" class="form-control" [(ngModel)]="departureCity" placeholder="departureCity(from)" required>
+      </div>
+      <div class="form-group">
+        <label for="arrivalCity">Arrival City</label>
+        <input type="text" id="arrivalCity" name="arrivalCity" class="form-control" [(ngModel)]="arrivalCity" placeholder="arrivalCity(to)" required>
+      </div>
+      <div class="form-group">
+        <label for="departureDate">Departure Date</label>
+        <input type="date" id="departureDate" name="departureDate" class="form-control" [(ngModel)]="departureDate" [min]
+        =
+        "
+        minDate
+        " required>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!flightSearchForm.form.valid">Search</button>
+    </form>
+
+    <p>Search for flights between two cities for any date-- <a href="/flight">Click Here</a></p>
+    
+    <div *ngIf="flights && flights.length > 0">
+      <h3>Available Flights</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Flight Number</th>
+            <th>Departure City</th>
+            <th>Arrival City</th>
+            <th>Departure Date</th>
+            <th>Price</th>
+            <th>Booking</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flight of flights">
+            <td>{{ flight.flightNo }}</td>
+            <td>{{ flight.departureCity }}</td>
+            <td>{{ flight.arrivalCity }}</td>
+            <td>{{ flight.departureDate }}</td>
+            <td>{{ flight.fare }}</td>
+            
+             <td><button type="submit" class="btn btn-primary" (click)="bookNow(flight)" >BookNow</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

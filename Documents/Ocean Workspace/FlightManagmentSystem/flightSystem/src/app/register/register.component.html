@@ -1,0 +1,81 @@
+<div id="bg">
+
+    <nav class="navbar">
+        <div class="containerr">
+          <div class="navbar-brand">
+            <span>Flight Management System</span>
+          </div>
+          
+        </div>
+      </nav>
+    
+    </div>
+    
+
+
+      <div class="container" style="background-image: url(./img/station.jpg); background-size: cover; background-position: center; padding: 20px;">
+        <form (ngSubmit)="register(registerForm)" #registerForm="ngForm">
+     
+          <div class="registertitle">
+            Register Here..!!
+          </div>
+          <div>
+            <label for="username">Username<span class="red">*</span></label>
+            <input type="text" id="username" required [(ngModel)]="registerRequest.username" name="username" #username="ngModel" placeholder="Username" required maxlength="20">
+            <div *ngIf="username.invalid && username.touched" class="error-message">Username is required and not exceed 20 characters</div>
+          </div>
+
+          <!-- <div>
+            <label for="username">Username<span class="red">*</span></label>
+            <input type="text" id="username" required [(ngModel)]="registerRequest.username" name="username" #username="ngModel" placeholder="Username" required
+                   pattern="^[A-Z][A-Za-z]{0,19}$">
+            <div *ngIf="username.invalid && username.touched" class="error-message">
+              <div *ngIf="usernameErrors.required">Username is required.</div>
+              <div *ngIf="usernameErrors.pattern">Username must start with a capital letter and be up to 20 characters long.</div>
+            </div>
+          </div>
+       -->
+     
+          <div>
+            <label for="email">Email<span class="red">*</span></label>
+            <input type="email" id="email" required [(ngModel)]="registerRequest.email" name="email" #email="ngModel" placeholder="Email" required
+                   (ngModelChange)="validateEmail($event)"
+                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            <div *ngIf="email.touched" class="error-message">
+              
+              <div *ngIf="emailErrors.pattern">Valid email is required.</div>
+              <div *ngIf="emailErrors.uppercase">Email should not contain capital letters.</div>
+            </div>
+          </div>
+     
+         <div>
+            <label for="password">Password<span class="red">*</span></label>
+            <div class="password-container">
+              <input [type]="hidePassword ? 'password' : 'text'" id="password" required [(ngModel)]="registerRequest.password" name="password" #password="ngModel" placeholder="Password"required
+              minlength
+              ="8"
+              pattern
+              ="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!*_])[A-Za-z\d@#$%^&+=!*_]{8,}$">
+              
+              <button type="button" (click)="togglePasswordVisibility()">
+                {{ hidePassword ? 'Show' : 'Hide' }}
+              </button>
+            </div>
+            <div *ngIf="password.invalid && password.touched" class="error-message">Password is required. Password must contain at least one uppercase letter, one special character, and one number and minimum length 8.
+            </div>
+          </div>
+          
+          <div>
+            <label for="role">Role</label>
+            <select id="role" required [(ngModel)]="registerRequest.role" name="role" #role="ngModel">
+              <option value="USER">User</option>
+            </select>
+            <div *ngIf="role.invalid && role.touched" class="error-message">Role is required</div>
+          </div>
+    
+          <button type="submit" class="btn btn-primary registerbut" style="padding-left: 2.5rem; padding-right: 2.5rem; background-color: pink;">Register</button>
+        </form>
+        <div class="inputBx"><br>
+            <p>Already have an account? <a href="/login">Login</a></p>
+          </div>
+      </div>

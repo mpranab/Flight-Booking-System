@@ -1,0 +1,16 @@
+package com.booking.client;
+
+@FeignClient(name="passengerService",url="http://localhost:8091/")
+public interface passengerProxy {
+	
+	@PostMapping("/api/passenger/addPassenger")
+	public Passenger addPassenger(@RequestBody Passenger passenger);
+	
+	
+	@DeleteMapping("/api/passenger/delete/{seat}/{flightNo}")
+	public String delete(@PathVariable int seat,@PathVariable long flightNo);
+	
+	@GetMapping("/api/passenger/count/{flightNo}")
+	public long count(@PathVariable long flightNo);
+
+}

@@ -1,0 +1,24 @@
+package com.booking.client;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.booking.entity.Passenger;
+
+@FeignClient(name="passengerService",url="http://localhost:8091/")
+public interface PassengerProxy {
+	
+	@PostMapping("/api/passenger/addPassenger")
+	public Passenger addPassenger(@RequestBody Passenger passenger);
+	
+	
+	@DeleteMapping("/api/passenger/delete/{seat}/{flightNo}")
+	public String delete(@PathVariable int seat,@PathVariable long flightNo);
+	
+	@GetMapping("/api/passenger/count/{flightNo}")
+	public long count(@PathVariable long flightNo);
+
+}

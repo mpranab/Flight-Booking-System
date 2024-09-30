@@ -1,0 +1,27 @@
+package com.booking.service;
+
+import java.util.List;
+
+import com.booking.entity.Booking;
+
+public class BookingServiceImpl  implements BookingService{
+
+	@Override
+	public List<Booking> getAllBookings() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String addBookings(Booking booking, String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteBooking(String bookingId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

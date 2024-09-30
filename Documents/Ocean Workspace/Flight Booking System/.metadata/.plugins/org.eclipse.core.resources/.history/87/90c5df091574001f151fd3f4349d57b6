@@ -1,0 +1,18 @@
+package com.booking.service;
+
+import java.util.List;
+
+import com.booking.entity.Booking;
+
+public interface BookingService {
+
+	// find all booking
+	public List<Booking> getAllBookings();
+
+	// add a booking
+	public String addBookings(Booking booking, String username);
+
+	// delete booking by id
+	public String deleteBooking(String bookingId);
+
+}

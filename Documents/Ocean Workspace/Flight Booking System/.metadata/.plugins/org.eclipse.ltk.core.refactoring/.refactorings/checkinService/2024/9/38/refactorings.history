@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;CheckIn.java&apos; to &apos;authenticationService/src/main/java/com.auth.entity&apos;&#x0D;&#x0A;- Original project: &apos;checkinService&apos;&#x0D;&#x0A;- Destination element: &apos;authenticationService/src/main/java/com.auth.entity&apos;&#x0D;&#x0A;- Original element: &apos;com.checkIn.entity.CheckIn.java&apos;" description="Copy compilation unit" destination="=authenticationService/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.auth.entity" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.checkIn.entity{CheckIn.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1726756058757" units="1" version="1.0"/>
+</session>

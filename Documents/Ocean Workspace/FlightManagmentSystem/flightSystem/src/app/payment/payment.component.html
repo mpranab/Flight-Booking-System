@@ -1,0 +1,48 @@
+
+<div class="tran">
+    <form (ngSubmit)="createTransaction()" #transactionForm="ngForm">
+        <div class="form-group">
+          <label for="custName">Customer Name<span>*</span></label>
+          <input type="text" class="form-control" id="custName" name="custName" [(ngModel)]="custName" required>
+          <small *ngIf="transactionForm.form.controls['custName'].touched && transactionForm.form.controls['custName'].hasError('required')" class="text-danger">
+            Customer Name is required.
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input type="number" class="form-control" id="amount" name="amount" readonly [value]="amount" required>
+        </div>
+        <div class="form-group">
+          <label for="cardNumber">Card Number<span>*</span></label>
+          <input type="number" class="form-control" id="cardNumber" name="cardNumber" [(ngModel)]="cardNumber" required>
+          <small *ngIf="transactionForm.form.controls['cardNumber'].touched && transactionForm.form.controls['cardNumber'].hasError('required')" class="text-danger">
+            Card Number is required.
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="expirationDate">Card Expiration Date<span>*</span></label>
+          <input type="date" class="form-control" id="expirationDate" name="expirationDate" [(ngModel)]="expirationDate" required>
+          <small *ngIf="transactionForm.form.controls['expirationDate'].touched && transactionForm.form.controls['expirationDate'].hasError('required')" class="text-danger">
+            Card Expiry Date is required.
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="cvc">CVV<span>*</span></label>
+          <input type="text" class="form-control" id="cvc" name="cvc" [(ngModel)]="cvc" required max="3">
+          <small *ngIf="transactionForm.form.controls['cvc'].touched && transactionForm.form.controls['cvc'].hasError('required')" class="text-danger">
+            CVV is required.
+          </small>
+        </div>
+        <div class="text-center">
+        <button type="submit" class="btn btn-primary">Create Transaction</button></div>
+      </form>
+    </div>
+      <div class="transaction-details-container" *ngIf="transactionDetails">
+        <div class="transaction-details">
+          <h3 class="bold">Transaction Successful!</h3>
+          <p><strong>Payment ID:</strong> {{ transactionDetails.orderId }}</p>
+          <p><strong>Currency:</strong> {{ transactionDetails.currency }}</p>
+          <p><strong>Amount:</strong> {{ transactionDetails.amount }}</p>
+          <p><strong>Key:</strong> {{ transactionDetails.key }}</p>
+         
+        </div>

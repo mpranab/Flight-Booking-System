@@ -1,0 +1,123 @@
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* semi-transparent background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+ 
+.registertitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+ 
+form div {
+    margin-bottom: 15px;
+}
+ 
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+ 
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+ 
+.password-container {
+    display: flex;
+    align-items: center;
+}
+ 
+.password-container button {
+    margin-left: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #121212;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+ 
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #080808;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+ 
+button[type="submit"]:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+ 
+.error-message {
+    color: red;
+    font-size: 12px;
+}
+
+.red{
+    color: red;
+  }
+
+  /* General styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+.navbar {
+    background-color:#61a3d8;
+    color: #fff;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Container styles */
+.containerr {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+/* Navbar brand styles */
+.navbar-brand {
+    flex-grow: 1;
+}
+
+.navbar-brand span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Example of responsive design */
+@media (max-width: 600px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .navbar-brand span {
+        font-size: 20px;
+    }
+    
+}

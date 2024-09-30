@@ -1,0 +1,42 @@
+<div id="bg">
+
+    <nav class="navbar">
+        <div class="containerr">
+          <div class="navbar-brand">
+            <span>Flight Management System</span>
+          </div>
+          
+        </div>
+      </nav>
+    
+    </div>
+
+<div class="background">
+    <div class="container">
+      <form (ngSubmit)="handleLogin()" #loginForm="ngForm">
+        <div class="qw">Login</div>
+        <div>
+          <label for="username">Username</label>
+          <input type="text" id="username" required [(ngModel)]="data.username" name="username" #username="ngModel" placeholder="Username">
+          <div *ngIf="username.invalid && username.touched" class="error-message">Username is required</div>
+        </div>
+ 
+        <div>
+          <label for="password">Password</label>
+          <div class="password-container">
+            <input [type]="hidePassword ? 'password' : 'text'" id="password" required [(ngModel)]="data.password" name="password" #password="ngModel" placeholder="Password">
+            <button type="button" (click)="togglePasswordVisibility()">
+              {{ hidePassword ? 'Show' : 'Hide' }}
+            </button>
+          </div>
+          <div *ngIf="password.invalid && password.touched" class="error-message">Password is required</div>
+        </div>
+ 
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+        <div class="inputBx"><br>
+            <p>Don't have an account? <a href="/signUp">Register</a></p>
+          </div>
+      </form>
+    </div>
+  </div>
+ 

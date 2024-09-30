@@ -1,0 +1,65 @@
+.contact-us-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+
+}
+#bg{
+    margin-top: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCY8D4pobS2Djuy-1e3WJ0CI9o6KMPq4IGxQ&s');
+   background-size: cover;
+     background-position: center;
+   }
+
+.contact-card {
+    background-color:rgb(234, 222, 222);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    opacity: 0.7;
+
+}
+
+
+
+.contact-info {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.contact-details {
+    text-align: left;
+}
+
+.contact-details h3 {
+    color: black;
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.contact-details p {
+    color: rgb(38, 36, 36);
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+
+h2 {
+    font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(225, 230, 235);
+}
+

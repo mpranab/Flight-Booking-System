@@ -1,0 +1,32 @@
+package com.booking.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.booking.entity.Booking;
+import com.booking.repository.BookingRepository;
+
+public class BookingServiceImpl  implements BookingService{
+	
+	@Autowired
+	private BookingRepository repo;
+
+	@Override
+	public List<Booking> getAllBookings() {
+		return repo.findAll();
+	}
+
+	@Override
+	public Booking addBookings(Booking booking, String username) {
+		
+		return repo.save(booking);
+	}
+
+	@Override
+	public String deleteBooking(String bookingId) {
+		repo.deleteById(bookingId);
+		return "Booking deleted Successfully";
+	}
+
+}

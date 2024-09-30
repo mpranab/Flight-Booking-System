@@ -1,0 +1,2 @@
+spring.application.name=bookingService
+server.port = 8081

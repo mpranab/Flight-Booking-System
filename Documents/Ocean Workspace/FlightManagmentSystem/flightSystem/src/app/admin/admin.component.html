@@ -1,0 +1,64 @@
+<nav class="navbar">
+    <div class="containerr">
+      <div class="navbar-brand">
+
+        <span>Flight Management System</span>
+      </div>
+
+      <div class="nav-actions">
+        <span>Hi {{username}} </span>
+        <span class="nav-item" (click)="bookings()">Bookings</span>
+        <span class="nav-item" (click)="logout()">Logout</span>
+        
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="background">
+  
+    <br>
+        <h2 style="text-align: center; color: rgb(20, 92, 169);"> <em> Welcome to  Admin Dashboard</em></h2>
+    <br>
+        
+        <br>
+        <br>
+        
+            <div class="btn-container">
+    
+            
+              <div  class="card text-center" style="width: 18rem;">
+                <div style="background-color: rgba(0, 0, 0, 0.74); border-radius: 10px;" class="card-body">
+                  <img class="card-img-top" height="63%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5lPukiu6CI5GG5GO1FV5sg5vvw7TDxJlKHg&usqp=CAU" >
+               
+                  <p  style="color:white;" class="card-text">Hi, You can view all the flights, update as well as delete</p>
+                  <div style="margin-right: 30%;" >
+                    
+                  <a  (click)="allFlights()"class="btn btn-primary">View</a>
+                </div>
+                </div>
+              </div>
+    
+              <div  class="card text-center" style="width: 18rem; margin-left: 50px;">
+                <div style="background-color: rgba(0, 0, 0, 0.74); border-radius: 10px;" class="card-body">
+                  <img height="63%" class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSH7qJr0LgKHsNuKd9DWzI8ChGjfuFtu9I9w&usqp=CAU">
+               
+                  <p  style="color:white;" class="card-text">Hi, You can add more number of flights</p>
+                  <div style="margin-right: 30%;" >
+                  <a (click)="addFlight()" class="btn btn-primary">Add</a>
+                </div>
+                </div>
+              </div>
+             
+            </div>
+          
+           
+
+          <br>
+          <br>
+          <br>
+        <br>
+        <br>
+      
+      
+    </div>

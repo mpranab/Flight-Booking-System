@@ -1,0 +1,152 @@
+package com.booking.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.booking.client.PassengerProxy;
+import com.booking.client.ServiceProxy;
+import com.booking.entity.Booking;
+import com.booking.entity.Flight;
+import com.booking.entity.Passenger;
+import com.booking.exception.BookingNotFoundException;
+import com.booking.exception.FlightNotFoundException;
+import com.booking.exception.SeatsNotAvailableException;
+import com.booking.repository.BookingRepository;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Slf4j
+public class BookServiceImpl implements BookingService{
+	@Autowired
+	private BookingRepository repo;
+
+	@Autowired
+	private ServiceProxy proxy;
+
+	@Autowired
+	private PassengerProxy pProxy;
+
+	public String addBooking(Booking booking, String username) throws SeatsNotAvailableException {
+		if (this.findFlightById(booking.getFlightNo()) == null) {
+			log.error("flight not found");
+			throw new FlightNotFoundException("flight not found");
+		}
+
+		List<Integer> list = new ArrayList<>();
+		List<Passenger> passengers = new ArrayList<>();
+		for (Passenger p : booking.getPassengers()) {
+			int seat = this.alotSeat(booking.getFlightNo(), list);
+			if (seat != 0) {
+				p.setSeatno(seat);
+				p.setFlightNo(booking.getFlightNo());
+				list.add(seat);
+				passengers.add(p);
+			} else {
+
+				log.error("Seats are not available");
+				throw new SeatsNotAvailableException("{\"message\": \"Seats are not available\"}");
+			}
+		}
+
+		for (Passenger p : passengers) {
+			this.pProxy.addPassenger(p);
+		}
+
+		booking.setSeats(list);
+		booking.setFare(this.getFare(booking.getFlightNo(), booking.getPassengers()));
+		this.repo.save(booking);
+
+		log.info("Your booking is confirmed and your reference number is " + booking.getBookingId() + " seats are "
+				+ booking.getSeats());
+		String res = "{\"seatNumber\": \"" + booking.getSeats() + "\", \"bookingId\": \"" + booking.getBookingId()
+				+ "\", \"fare\": " + booking.getFare() + "}";
+		return res;
+
+	}
+
+	@Override
+	public Flight findFlightById(long id) throws FlightNotFoundException {
+		if (proxy.getFlight(id) != null) {
+			log.info("flight fetched ");
+			return proxy.getFlight(id);
+		} else {
+			log.error("flight is not present");
+			throw new FlightNotFoundException("flight is not present");
+		}
+	}
+
+	@Override
+	public int alotSeat(long flightNo, List<Integer> list) {
+		Flight obj = this.findFlightById(flightNo);
+		for (int i = 1; i <= obj.getSeatCapacity(); i++) {
+			Optional<Booking> booking = repo.findByPassengersSeatnoAndFlightNo(i, flightNo);
+			if (booking.isEmpty() && !list.contains(i)) {
+				return i;
+			}
+		}
+		return 0;
+	}
+
+	@Override
+	public double getFare(long flightNo, List<Passenger> passenger) {
+		Flight flight = this.findFlightById(flightNo);
+		return flight.getFare() * passenger.size();
+	}
+
+	@Override
+	public String deleteBooking(String bookingId) throws BookingNotFoundException {
+		Optional<Booking> booking = repo.findById(bookingId);
+		if (booking.isPresent()) {
+			System.out.println("Booking ID: " + bookingId);
+
+			List<Integer> list = booking.get().getSeats();
+			for (int i : list) {
+				this.pProxy.delete(i, booking.get().getFlightNo());
+			}
+
+			repo.deleteById(bookingId);
+			log.info("Flight ticket deleted successfully");
+			return "{\"message\": \"Deleted successfully\"}";
+		} else {
+			log.error("Booking id not available");
+			throw new BookingNotFoundException("Booking id not available");
+		}
+	}
+
+	@Override
+	public Booking bookingInfo(String bookingId) throws BookingNotFoundException {
+		Optional<Booking> booking = repo.findById(bookingId);
+		if (booking.isPresent()) {
+			log.info("found booking data");
+			return booking.get();
+		} else {
+			log.error("Booking id not available");
+			throw new BookingNotFoundException("Booking id not available");
+		}
+	}
+
+	@Override
+	public List<Booking> getAllBookingsByUsername(String username) {
+		return repo.findByUsername(username);
+	}
+
+	@Override
+	public List<Booking> getAllBookingsByFlightNo(long flightNo) {
+		return repo.findByFlightNo(flightNo);
+	}
+
+	@Override
+	public String count(long flightNo) {
+		String msg = "{\"message\": \"Seats Retrieved\", \"count\":" + this.pProxy.count(flightNo)
+				+ ", \"seatCapacity\": " + this.findFlightById(flightNo).getSeatCapacity() + "}";
+		return msg;
+	}
+
+	
+
+}
